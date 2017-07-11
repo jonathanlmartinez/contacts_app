@@ -18,4 +18,13 @@ class PagesController < ApplicationController
     render "show.html.erb"
   end 
 
+  def new 
+    render "new.html.erb"
+  end
+
+  def create
+    
+    render "create.html.erb"
+  end 
+
 end
