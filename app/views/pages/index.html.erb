@@ -1,6 +1,17 @@
-<% @contacts.each do |contact| %>
-<h1> <%= "#{contact.first_name} #{contact.last_name}" %> </h1>
-<h2> <%= contact.email %> </h2>
-<h3> <%= contact.phone_number %> </h3>
-
-<% end %>
+<div class="container">
+  <% @contacts.each do |contact| %>
+  <div class="media">
+    <div class="media-left media-middle">
+      <a href="#">
+        <img class="media-object" src="..." alt="...">
+      </a>
+    </div>
+    <div class="media-body">
+      <h3 class="media-heading"> <%= contact.full_name  %> </h3>
+      <h4> <%= contact.email %> </h4>
+      <h5> <%= contact.phone_number %> </h5>
+      ...
+    </div>
+  </div>
+  <% end %>
+</div>

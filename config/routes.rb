@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get "/contacts/:id" => "pages#show"
   get "contacts/:id/edit" => "pages#edit"
   patch "/contacts/:id" => "pages#update"
+  delete "/contacts/:id" => "pages#destroy"
 end

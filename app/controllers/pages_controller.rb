@@ -9,8 +9,8 @@ class PagesController < ApplicationController
   end 
 
   def show
-    id = params[:id]
-    @contact = Contact.find_by(id: id)
+    @id = params[:id]
+    @contact = Contact.find_by(id: @id)
    
     render "show.html.erb"
   end 
@@ -24,11 +24,11 @@ class PagesController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name],
       email: params[:email],
-      phone_number:[:phone_number]
+      phone_number: params[:phone_number]
     )
     contact.save
 
-    render "create.html.erb"
+    redirect "/contacts/#{contact.id}"
   end 
 
   def edit 
@@ -51,6 +51,13 @@ class PagesController < ApplicationController
     
     contact.save
 
-    render "update.html.erb"
+    redirect "/contacts/#{id}"
+  end 
+
+  def destroy 
+    id = params[:id]
+    contact = Contact.find_by(id: id)
+    contact.destroy
+    render "destroy.html.erb"
   end 
 end
