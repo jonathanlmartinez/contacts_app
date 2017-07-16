@@ -2,7 +2,7 @@
   <% @contacts.each do |contact| %>
   <div class="media">
     <div class="media-left media-middle">
-      <a href="#">
+      <a href="/contacts/<%= contact.id%>">
         <img class="media-object" src="..." alt="...">
       </a>
     </div>
@@ -10,6 +10,10 @@
       <h3 class="media-heading"> <%= contact.full_name  %> </h3>
       <h4> <%= contact.email %> </h4>
       <h5> <%= contact.phone_number %> </h5>
+      <h5> <%= contact.bio %> </h5>
+      <div class="btn-group" role="group" aria-label="...">
+        <a href="/contacts/<%= contact.id%>" type="button" class="btn btn-default">More Info</a>
+      </div>
       ...
     </div>
   </div>
