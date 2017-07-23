@@ -1,15 +1,24 @@
 class PagesController < ApplicationController
   
   def index
-    @contacts = Contact.all
-   
-    render "index.html.erb"
+    if current_user 
+      search = params[:search_input]
+
+      if search 
+        @contacts = current_user.contacts.where("title ILIKE ?", "%" + search_terms + "%")
+      else 
+        @contacts = current_user.contacts
+      end 
+      render "index.html.erb"
+    else 
+      redirect_to "/signup"
+    end 
   end 
 
   def show
     @id = params[:id]
     @contact = Contact.find_by(id: @id)
-   
+     
     render "show.html.erb"
   end 
 
@@ -23,7 +32,8 @@ class PagesController < ApplicationController
       middle_name: params[:middle_name],
       last_name: params[:last_name],
       email: params[:email],
-      phone_number: params[:phone_number]
+      phone_number: params[:phone_number],
+      user_id: current_user.id
     )
     contact.save
 
